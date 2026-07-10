@@ -595,7 +595,7 @@ with tab_diagram:
     FACT_SALES }o--|| DIM_PRODUCT : "product"
     FACT_SALES }o--|| DIM_STORE : "at store"
 """
-        st.components.v1.html(mermaid_to_html(example), height=580, scrolling=True)
+        st.iframe(mermaid_to_html(example), height=580, scrolling=True)
     else:
         col_hdr, col_regen = st.columns([4, 1])
         with col_hdr:
@@ -608,7 +608,7 @@ with tab_diagram:
                 })
                 st.rerun()
 
-        st.components.v1.html(
+        st.iframe(
             mermaid_to_html(st.session_state.last_diagram),
             height=660, scrolling=True,
         )
