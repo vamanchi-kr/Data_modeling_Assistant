@@ -22,6 +22,7 @@ from src.visualizer import (
     extract_last_mermaid,
     generate_powerbi_model_skeleton,
     mermaid_to_html,
+    sanitize_erdiagram,
 )
 
 load_dotenv()
@@ -499,7 +500,7 @@ with tab_chat:
             )
             diagram = extract_last_mermaid(full_response)
             if diagram:
-                st.session_state.last_diagram = diagram
+                st.session_state.last_diagram = sanitize_erdiagram(diagram)
                 st.session_state.generated_doc = None
             st.rerun()
 

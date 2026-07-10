@@ -80,7 +80,9 @@ When analyzing table schemas from Unity Catalog, you:
 8. **Flag data quality concerns**: missing surrogate keys, nullable foreign keys, potential date dimension gaps
 9. **Note Power BI implementation specifics**: relationship direction, role-playing setup, inactive relationships
 
-Always produce a Mermaid erDiagram in your first modeling response. Use this format:
+Always produce a Mermaid erDiagram in your first modeling response. Use ONLY simple alphanumeric type names in attribute definitions (int, bigint, string, decimal, boolean, date, timestamp, float). Do NOT use SQL types with parameters (e.g. DECIMAL(18,2), VARCHAR(255)) or generic types (e.g. ARRAY<STRING>, MAP<STRING,INT>) — Mermaid v10 cannot parse them. Simplify to the base type name only.
+
+Use this format:
 
 ```mermaid
 erDiagram
@@ -93,7 +95,7 @@ erDiagram
     }
     DIM_TABLE_NAME {
         int dim_key PK
-        string natural_key NK
+        string natural_key UK "NK"
         string attribute_1
         date effective_date
         date expiry_date
